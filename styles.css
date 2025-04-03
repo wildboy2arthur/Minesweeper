@@ -1,0 +1,186 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft JhengHei', Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.game-section {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    display: none;
+}
+
+.difficulty-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.difficulty-btn, #restart-btn, #play-again-btn {
+    padding: 12px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.difficulty-btn:hover, #restart-btn:hover, #play-again-btn:hover {
+    background-color: #2980b9;
+}
+
+#restart-btn {
+    background-color: #e74c3c;
+    margin-left: 10px;
+}
+
+#restart-btn:hover {
+    background-color: #c0392b;
+}
+
+.game-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.info-item {
+    background-color: #ecf0f1;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+#game-board {
+    display: inline-grid;
+    grid-template-columns: repeat(var(--cols, 9), 1fr);
+    gap: 2px;
+    margin: 0 auto;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    background-color: #bdc3c7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: normal;
+}
+
+.cell:hover {
+    background-color: #a3a8ac;
+}
+
+.cell.revealed {
+    background-color: #ecf0f1;
+}
+
+.cell.mine {
+    background-color: #e74c3c;
+}
+
+.cell.flagged {
+    background-color: #f39c12;
+}
+
+/* 數字顏色 */
+.cell[data-number="1"] { color: #3498db; }
+.cell[data-number="2"] { color: #27ae60; }
+.cell[data-number="3"] { color: #e74c3c; }
+.cell[data-number="4"] { color: #8e44ad; }
+.cell[data-number="5"] { color: #d35400; }
+.cell[data-number="6"] { color: #16a085; }
+.cell[data-number="7"] { color: #2c3e50; }
+.cell[data-number="8"] { color: #7f8c8d; }
+
+/* 響應式設計 */
+@media (min-width: 768px) {
+    .difficulty-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .cell {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cell {
+        width: 25px;
+        height: 25px;
+        font-size: 14px;
+    }
+    
+    .game-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #restart-btn {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+
+/* 動畫效果 */
+@keyframes reveal {
+    from { transform: scale(0.8); opacity: 0.5; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes explode {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.cell.revealed {
+    animation: reveal 0.2s ease-out;
+}
+
+.cell.mine {
+    animation: explode 0.5s ease-out;
+}

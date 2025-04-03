@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>踩地雷遊戲</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>踩地雷遊戲</h1>
+        
+        <div id="game-menu" class="game-section">
+            <h2>選擇難度</h2>
+            <div class="difficulty-buttons">
+                <button id="beginner" class="difficulty-btn">初級 (9x9, 10雷)</button>
+                <button id="intermediate" class="difficulty-btn">中級 (16x16, 40雷)</button>
+                <button id="expert" class="difficulty-btn">高級 (30x16, 99雷)</button>
+            </div>
+        </div>
+        
+        <div id="game-container" class="game-section hidden">
+            <div class="game-info">
+                <div class="info-item">
+                    <span>剩餘地雷:</span>
+                    <span id="mines-count">0</span>
+                </div>
+                <div class="info-item">
+                    <span>時間:</span>
+                    <span id="timer">0</span>
+                </div>
+                <button id="restart-btn">重新開始</button>
+            </div>
+            
+            <div id="game-board"></div>
+        </div>
+        
+        <div id="game-over" class="game-section hidden">
+            <h2 id="result-message"></h2>
+            <p>用時: <span id="final-time">0</span> 秒</p>
+            <button id="play-again-btn">再玩一次</button>
+        </div>
+    </div>
+    
+    <audio id="click-sound" src="sounds/click.mp3" preload="auto"></audio>
+    <audio id="explosion-sound" src="sounds/explosion.mp3" preload="auto"></audio>
+    <audio id="victory-sound" src="sounds/victory.mp3" preload="auto"></audio>
+    
+    <script src="script.js"></script>
+</body>
+</html>
